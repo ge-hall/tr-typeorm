@@ -1,5 +1,4 @@
 import { Global, Module } from '@nestjs/common';
-import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { USER_SERVICE_NAME, USER_PACKAGE_NAME } from './user.pb';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -20,7 +19,5 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [UserController],
-  providers: [UserService],
-  exports: [UserService],
 })
 export class UserModule {}

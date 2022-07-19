@@ -8,20 +8,20 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "proto:install": "npm i git+https://github.com/ge-hall/tr-typeorm-proto.git",
-    "proto:user": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/tr-typeorm-proto/proto --ts_proto_out=src/user/ node_modules/tr-typeorm-proto/proto/user.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:user": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/tr-typeorm-proto/proto --ts_proto_out=lib/user node_modules/tr-typeorm-proto/proto/user.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:all": "npm run proto:user",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/api-gateway/test/jest-e2e.json"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.6.7",
@@ -68,7 +68,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -76,7 +76,10 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/apps/"
+    ]
   }
 }
