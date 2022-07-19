@@ -6,7 +6,9 @@
   "root": "apps/api-gateway",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+    "tsConfigPath": "apps/api-gateway/tsconfig.app.json",
+    "assets": ["**/*.proto"],
+    "watchAssets": true
   },
   "projects": {
     "api-gateway": {
@@ -29,3 +31,4 @@
     }
   }
 }
+
